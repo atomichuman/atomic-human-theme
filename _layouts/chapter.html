@@ -17,7 +17,7 @@ layout: default
       {% if page.related_themes %}
         <li>
           <strong>Themes:</strong>
-          {% for theme in page.related_themes %}
+          {% for theme in page.themes %}
             <a href="/themes/{{ theme | slugify }}" class="text-pastel-pink hover:underline">{{ theme }}</a>
           {% endfor %}
         </li>
@@ -35,6 +35,14 @@ layout: default
           <strong>Technologies:</strong>
           {% for tech in page.technologies %}
             <a href="/technology/{{ tech | slugify }}" class="text-pastel-blue hover:underline">{{ tech }}</a>
+          {% endfor %}
+        </li>
+      {% endif %}
+      {% if page.historical_events %}
+        <li>
+          <strong>Historical Events:</strong>
+          {% for history in page.historical_events %}
+            <a href="/history/{{ history | slugify }}" class="text-pastel-blue hover:underline">{{ history }}</a>
           {% endfor %}
         </li>
       {% endif %}
