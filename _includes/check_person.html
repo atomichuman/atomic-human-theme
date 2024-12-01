@@ -1,0 +1,31 @@
+{% assign person_id = include.person_id %}
+
+{% comment %}
+Find the person by their ID in the people collection.
+{% endcomment %}
+{% assign person = site.people | where: "id", person_id | first %}
+
+{% if person %}
+  {% comment %}
+  Construct the name using citeproc.yml fields. Use preferred name if it exists, fallback to given name.
+  {% endcomment %}
+  {% assign name_parts = "" %}
+  {% if person.prefix %}{% assign name_parts = name_parts | append: person.prefix | append: " " %}{% endif %}
+  {% if person.preferred %}
+    {% assign name_parts = name_parts | append: person.preferred %}
+  {% elsif person.given %}
+    {% assign name_parts = name_parts | append: person.given %}
+  {% endif %}
+  {% if person.family %}{% assign name_parts = name_parts | append: " " | append: person.family %}{% endif %}
+  {% if person.suffix %}{% assign name_parts = name_parts | append: " " | append: person.suffix %}{% endif %}
+
+  {% comment %}
+  Output the name as a link to the person's page.
+  {% endcomment %}
+  <a href="{{ person.url | relative_url }}">{{ name_parts | strip }}</a>
+{% else %}
+  {% comment %}
+  If the person is not found, return nil for fallback handling.
+  {% endcomment %}
+  {{ nil }}
+{% endif %}
