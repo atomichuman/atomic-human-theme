@@ -1,0 +1,44 @@
+---
+layout: default
+---
+<article class="prose max-w-4xl mx-auto p-6">
+  <header>
+    <h1 class="text-4xl font-serif text-dark-text">{{ page.title }}</h1>
+    <p class="text-gray-600 mt-2">
+      <strong>Author:</strong> {{ page.author }} <br>
+      <strong>Type:</strong> {{ page.type }}
+      {% if page.type == "machine-generated" %}
+        <br><strong>Model:</strong> {{ page.model }}
+        <br><strong>Generated Date:</strong> {{ page.generated_date }}
+      {% endif %}
+      <br><strong>Rating:</strong> {{ page.rating }}/5
+    </p>
+  </header>
+
+  <div class="mt-8">
+    <p><strong>Summary:</strong> {{ page.summary }}</p>
+    {{ content }}
+  </div>
+
+  <footer class="mt-12">
+    <h2 class="text-2xl font-bold">Related Chapters & Themes</h2>
+    <ul class="list-disc list-inside mt-4">
+      {% if page.related_chapters %}
+        <li>
+          <strong>Chapters:</strong>
+          {% for chapter in page.related_chapters %}
+            <a href="/chapters/{{ chapter | slugify }}" class="text-pastel-pink hover:underline">{{ chapter }}</a>
+          {% endfor %}
+        </li>
+      {% endif %}
+      {% if page.related_themes %}
+        <li>
+          <strong>Themes:</strong>
+          {% for theme in page.related_themes %}
+            <a href="/themes/{{ theme | slugify }}" class="text-pastel-purple hover:underline">{{ theme }}</a>
+          {% endfor %}
+        </li>
+      {% endif %}
+    </ul>
+  </footer>
+</article>

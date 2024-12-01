@@ -1,0 +1,43 @@
+---
+layout: default
+---
+<article class="prose max-w-4xl mx-auto p-6">
+  <header>
+    <h1 class="text-4xl font-serif text-dark-text">{{ page.title }}</h1>
+    <p class="text-gray-600 text-lg mt-2">{{ page.summary }}</p>
+  </header>
+
+  <div class="mt-8">
+    {{ content }}
+  </div>
+
+  <footer class="mt-12">
+    <h2 class="text-2xl font-bold">Related Content</h2>
+    <ul class="list-disc list-inside mt-4">
+      {% if page.related_themes %}
+        <li>
+          <strong>Themes:</strong>
+          {% for theme in page.related_themes %}
+            <a href="/themes/{{ theme | slugify }}" class="text-pastel-pink hover:underline">{{ theme }}</a>
+          {% endfor %}
+        </li>
+      {% endif %}
+      {% if page.reflections %}
+        <li>
+          <strong>Reflections:</strong>
+          {% for reflection in page.reflections %}
+            <a href="/reflections/{{ reflection | slugify }}" class="text-pastel-purple hover:underline">{{ reflection }}</a>
+          {% endfor %}
+        </li>
+      {% endif %}
+      {% if page.technologies %}
+        <li>
+          <strong>Technologies:</strong>
+          {% for tech in page.technologies %}
+            <a href="/technology/{{ tech | slugify }}" class="text-pastel-blue hover:underline">{{ tech }}</a>
+          {% endfor %}
+        </li>
+      {% endif %}
+    </ul>
+  </footer>
+</article>
