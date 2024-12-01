@@ -12,6 +12,9 @@ layout: default
       {% unless person_link %}
       {% if page.contributed_by.initial.name %}
       {% assign person_link=page.contributed_by.initial.name %}
+      {% else %}
+      {% assign person_link=nil %}
+      {% endif %}
       {% endunless %}
       {% endif %}
       {% if person_link %}
