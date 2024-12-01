@@ -1,8 +1,3 @@
-<!-- include page.featured_image (if it exists) as social media card. -->
-{% if page.featured_image %}
-<meta property="og:image" content="{{ page.featured_image | absolute_url }}">
-{% endif %}
-
 <header class="py-6 text-center bg-gradient-to-r from-black via-f72585 to-4cc9f0 text-white">
   <h1 class="text-5xl font-serif tracking-wide">
     <a href="{{ '/' | relative_url }}" class="hover:underline">

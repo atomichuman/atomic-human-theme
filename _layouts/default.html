@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }} | {{ site.title }}</title>
   {% seo %}
+  {% if page.featured_image %}
+  <meta property="og:image" content="{{ page.featured_image | absolute_url }}">
+  {% endif %}
   <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+  <!-- include page.featured_image (if it exists) as social media card. -->
+
 </head>
 <body class="{% if page.url == "/" %}bg-background text-text{% else %}bg-white text-black{% endif %} font-sans">
   {% include header.html %}
