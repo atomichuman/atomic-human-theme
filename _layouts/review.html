@@ -9,10 +9,10 @@ layout: default
       <!-- Check if the person_id is in the people collection -->
       {% if page.contributed_by.initial.person_id %}
       {% capture person_link %}{% include check_person.html person_id=page.contributed_by.initial.person_id %}{% endcapture %}
-      {% else %}
+      {% unless person_link %}
       {% if page.contributed_by.initial.name %}
       {% assign person_link=page.contributed_by.initial.name %}
-      {% endif %}
+      {% endunless %}
       {% endif %}
       {% if person_link %}
       <strong>Written by:</strong> {{ person_link }}
