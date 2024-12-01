@@ -13,6 +13,7 @@ all: build
 install:
 	@echo "Installing dependencies..."
 	npm install
+	npm install @tailwindcss/typography
 
 # Build the Tailwind CSS
 .PHONY: build
