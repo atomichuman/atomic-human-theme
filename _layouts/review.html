@@ -6,7 +6,21 @@ layout: default
     <h1 class="text-4xl font-serif text-dark-text">{{ page.title }}</h1>
     <p class="text-gray-600 mt-2">
       {% if page.contributed_by.initial.type == "human" %}
-      {% elsif page.contributed_by.initial.type == "machine-generated" %}
+      <!-- Check if the person_id is in the people collection -->
+      {% if page.contributed_by.initial.person_id %}
+      {% assign person_link = include check_person.html person_id=page.contributed_by.initial.person_id %}
+      {% else %}
+      {% if page.contributed_by.initial.name %}
+      {% assign person_link=page.contributed_by.initial.name %}
+      {% endif %}
+      {% endif %}
+      {% if person_link %}
+      <strong>Written by:</strong> {{ person_link }}
+      {% endif %}
+      {% if page.contributed_by.initial.date %}
+      <br><strong>Published Date:</strong> {{ page.contributed_by.initial.date }}
+      {% endif %}
+      {% elsif page.contributed_by.initial.type == "machine" %}
       <br><strong>Model:</strong> {{ page.contributed_by.initial.model }}
       <br><strong>Generated Date:</strong> {{ page.contributed_by.initial.date }}
       {% endif %}
