@@ -1,0 +1,61 @@
+<!-- Contribution Metadata Section -->
+{% if page.contributed_by %}
+  <footer class="mt-12 text-sm text-gray-600">
+    {% if page.contributed_by.initial %}
+      <p>
+        Initial contribution by: 
+        {% if page.contributed_by.initial.type == "machine" %}
+          <strong>Machine</strong>
+        {% elsif page.contributed_by.initial.type == "human" %}
+          <strong>Human</strong>
+        {% endif %}
+        {% if page.contributed_by.initial.tool %}
+          using <strong>{{ page.contributed_by.initial.tool }}</strong>
+          {% if page.contributed_by.initial.version %}
+            (version {{ page.contributed_by.initial.version }})
+          {% endif %}
+        {% endif %}
+        {% if page.contributed_by.initial.date %}
+          on <strong>{{ page.contributed_by.initial.date }}</strong>.
+        {% endif %}
+      </p>
+      {% if page.contributed_by.initial.notes %}
+        <p><em>{{ page.contributed_by.initial.notes }}</em></p>
+      {% endif %}
+    {% endif %}
+
+    {% if page.contributed_by.reviewed_by %}
+      <p>
+        Reviewed and approved by:
+      </p>
+      <ul>
+        {% for reviewer in page.contributed_by.reviewed_by %}
+          <li>
+            {% if reviewer.type == "human" %}
+              {% if reviewer.person_id %}
+                <a href="/people/{{ reviewer.person_id | slugify }}" class="text-pastel-purple hover:underline">
+                  <strong>{{ reviewer.name }}</strong>
+                </a>
+              {% else %}
+                <strong>{{ reviewer.name }}</strong>
+              {% endif %}
+            {% else %}
+              <strong>Machine</strong>
+            {% endif %}
+            {% if reviewer.date %}
+              on <strong>{{ reviewer.date }}</strong>.
+            {% endif %}
+            {% if reviewer.notes %}
+              <p><em>{{ reviewer.notes }}</em></p>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <!-- If no reviewed_by entry, assume machine-only -->
+      <p>
+        <strong>This content has not been reviewed by a human.</strong>
+      </p>
+    {% endif %}
+  </footer>
+{% endif %}
