@@ -8,7 +8,7 @@ layout: default
       {% if page.contributed_by.initial.type == "human" %}
       <!-- Check if the person_id is in the people collection -->
       {% if page.contributed_by.initial.person_id %}
-      {% assign person_link = include check_person.html person_id=page.contributed_by.initial.person_id %}
+      {% capture person_link %}{% include check_person.html person_id=page.contributed_by.initial.person_id %}{% endcapture %}
       {% else %}
       {% if page.contributed_by.initial.name %}
       {% assign person_link=page.contributed_by.initial.name %}
