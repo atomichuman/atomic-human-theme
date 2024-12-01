@@ -6,7 +6,7 @@ layout: default
     <h1 class="text-4xl font-serif text-dark-text">{{ page.title }}</h1>
     <p class="text-gray-600 mt-2">
       <strong>Description:</strong> {{ page.description }}<br>
-      <strong>Source:</strong> <a href="{{ page.source }}" target="_blank" class="text-pastel-blue hover:underline">{{ page.source }}</a><br>
+      <strong>Source:</strong> {{ page.source }}<br>
       <strong>Tags:</strong> 
       {% for tag in page.tags %}
         <span class="bg-gray-200 text-gray-800 rounded px-2 py-1">{{ tag }}</span>
