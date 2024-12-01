@@ -19,23 +19,31 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Updated neutral palette for better readability
+        background: '#f7f7f7',  // Soft off-white background
+        text: '#1a1a1a',        // Dark gray text for readability
+        accent: '#374151',      // Muted gray for headers and accents
+        
+        // Softer pastel tones inspired by the original but toned down
         pastel: {
-          pink: '#ff9a8b',
-          purple: '#a18cd1',
-          blue: '#fecfef',
-          orange: '#fbc2eb',
+          pink: '#f9c8c8',      // Softer pink for subtle accents
+          purple: '#d1c4e9',    // Muted lavender for secondary highlights
+          blue: '#a7d8ff',      // Subtle blue for links and buttons
+          orange: '#ffd8b1',    // Light orange for complementary elements
         },
+        
+        // For footer and other dark-themed areas
         dark: {
-          background: '#1a202c',
-          text: '#e2e8f0',
+          background: '#2d3748', // Dark slate background
+          text: '#e2e8f0',       // Light text for contrast
         }
       },
       fontFamily: {
-        serif: ['Playfair Display', 'Georgia', 'serif'],
-        sans: ['Roboto', 'Arial', 'sans-serif'],
+        serif: ['Playfair Display', 'Georgia', 'serif'], // For headings
+        sans: ['Roboto', 'Arial', 'sans-serif'],         // For body text
       },
       gradients: {
-        circular: ['from-pink-300 via-purple-200 to-blue-200'],
+        circular: ['from-pastel-pink via-pastel-purple to-pastel-blue'],
       }
     },
   },
