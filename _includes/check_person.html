@@ -22,10 +22,10 @@ Find the person by their ID in the people collection.
   {% comment %}
   Output the name as a link to the person's page.
   {% endcomment %}
-  <a href="{{ person.url | relative_url }}">{{ name_parts | strip }}</a>
+  {% capture person_link %}<a href="{{ person.url | relative_url }}">{{ name_parts | strip }}</a>{% endcapture %}
 {% else %}
   {% comment %}
   If the person is not found, return nil for fallback handling.
   {% endcomment %}
-  {{ nil }}
+  {% assign person_link = nil %}
 {% endif %}
