@@ -1,7 +1,6 @@
 # Makefile for managing the Atomic Human Theme
 
 # Variables
-NODE_BIN=node_modules/.bin
 CSS_SRC=assets/css/tailwind.css
 CSS_OUT=assets/css/styles.css
 
@@ -19,13 +18,13 @@ install:
 .PHONY: build
 build: install
 	@echo "Building Tailwind CSS..."
-	$(NODE_BIN)/postcss $(CSS_SRC) -o $(CSS_OUT)
+	npx tailwindcss -i $(CSS_SRC) -o $(CSS_OUT) --minify
 
 # Watch for changes (useful during development)
 .PHONY: watch
 watch: install
 	@echo "Watching for changes..."
-	$(NODE_BIN)/postcss $(CSS_SRC) -o $(CSS_OUT) --watch
+	npx tailwindcss -i $(CSS_SRC) -o $(CSS_OUT) --watch
 
 # Clean generated CSS
 .PHONY: clean
