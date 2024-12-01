@@ -36,6 +36,7 @@ layout: default
       </div>
     {% endif %}
   </div>
+  {% if page.related_chapters or page.related_themes %}
   <footer class="mt-12">
     <h2 class="text-2xl font-bold">Related Chapters & Themes</h2>
     <ul class="list-disc list-inside mt-4">
@@ -57,4 +58,5 @@ layout: default
       {% endif %}
     </ul>
   </footer>
+  {% endif %}
 </article>
