@@ -14,7 +14,7 @@
 </head>
 <body class="{% if page.url == "/" %}bg-background text-text{% else %}bg-white text-black{% endif %} font-sans">
   {% include header.html %}
-
+  {% include edit_link.html %}
   {% if page.url == "/" %}
   <!-- Atomic Eye -->
     <div class="flex justify-center py-6">
