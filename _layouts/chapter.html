@@ -49,6 +49,14 @@ layout: default
           {% endfor %}
         </li>
       {% endif %}
+      {% if page.people %}
+        <li>
+          <strong>Historical Events:</strong>
+          {% for person in page.people %}
+            <a href="/people/{{ person | slugify }}" class="text-pastel-blue hover:underline">{{ person }}</a>
+          {% endfor %}
+        </li>
+      {% endif %}
     </ul>
   </footer>
 </article>
