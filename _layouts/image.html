@@ -14,27 +14,40 @@ layout: default
     </p>
   </header>
 
-<div class="mt-8">
-  <image src="{{ page.featured_image }}" alt="{{ page.title }}" class="w-full rounded-lg shadow-lg mb-6">
-  {{ content | split: '> ## Commentary by Machine' | first }}
-  
-  {% if content contains '> ## Commentary by Machine' %}
-  <div id="commentary-root"></div>
+  <div class="mt-8">
+    {{ content }}
 
-    <!-- Add the scripts at the end of the body -->
-    {% unless page.disable_commentary %}
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css" rel="stylesheet">
+  {% if content contains 'machine-commentary' %}
+  <!-- Commentary toggle button -->
+  <div class="flex items-center gap-4 mb-4 mt-8">
+    <button id="toggleCommentary" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+      Show Commentary
+    </button>
+    <p id="commentaryPrompt" class="text-sm text-gray-500 italic">
+      Click to see what the machine says about the image and the book
+    </p>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const button = document.getElementById('toggleCommentary');
+      const prompt = document.getElementById('commentaryPrompt');
+      const commentary = document.querySelector('.machine-commentary');
       
-      <script src="{{ '/js/commentary-toggle.js' | relative_url }}"></script>
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          const commentaryContent = `{{ content | split: '> ## Commentary from ChatGPT' | last | escape_once }}`;
-          const root = document.getElementById('commentary-root');
-          createCommentaryToggle(root, commentaryContent);
-        });
-      </script>
-    {% endunless %}
-  {% endif %}
+      // Initially hide the commentary
+      commentary.style.display = 'none';
+      
+      button.addEventListener('click', () => {
+        const isHidden = commentary.style.display === 'none';
+        commentary.style.display = isHidden ? 'block' : 'none';
+        button.textContent = isHidden ? 'Hide Commentary' : 'Show Commentary';
+        button.className = isHidden ? 
+          'px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors' :
+          'px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors';
+        prompt.style.display = isHidden ? 'none' : 'block';
+      });
+    });
+  </script>
+{% endif %}
 </div>  
 </article>
