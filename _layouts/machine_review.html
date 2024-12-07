@@ -18,7 +18,7 @@ layout: default
       </div>
     {% endif %}
   </div>
-    {% if content contains 'human-commentary' %}
+    {% if content contains 'human-commentary' or page.comment %}
     <!-- Commentary toggle button -->
     <div class="flex items-center gap-4 mb-4 mt-8">
       <button id="toggleCommentary" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
