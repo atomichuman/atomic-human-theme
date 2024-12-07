@@ -1,0 +1,52 @@
+---
+layout: default
+---
+<article class="prose max-w-4xl mx-auto p-6">
+  <header>
+    <h1 class="text-4xl font-serif text-dark-text">{{ page.title }}</h1>
+    {% if content %}
+      <div class="mt-4">
+        {{ content }}
+      </div>
+    {% endif %}
+    <p class="text-gray-600 mt-2">
+      {% if page.contributed_by.initial.type == "human" %}
+      <!-- Check if the person_id is in the people collection -->
+      {% if page.contributed_by.initial.person_id %}
+      {% include check_person.html person_id=page.contributed_by.initial.person_id %}
+      {% unless person_link %}
+      {% if page.contributed_by.initial.name %}
+      {% assign person_link=page.contributed_by.initial.name %}
+      {% else %}
+      {% assign person_link=nil %}
+      {% endif %}
+      {% endunless %}
+      {% endif %}
+      {% if person_link %}
+      <strong>Written by:</strong> {{ person_link }}
+      {% endif %}
+      {% if page.contributed_by.initial.date %}
+      <br><strong>Published Date:</strong> {{ page.contributed_by.initial.date }}
+      {% endif %}
+      {% elsif page.contributed_by.initial.type == "machine" %}
+      <br><strong>Model:</strong> {{ page.contributed_by.initial.tool }} {{page.contributed_by.initial.version }}
+      <br><strong>Generated Date:</strong> {{ page.contributed_by.initial.date }}
+      {% endif %}
+    </p>
+  </header>
+
+  
+  <div class="mt-8">
+    {% if page.extract %}
+      <blockquote class="italic border-l-4 border-pastel-purple pl-4 text-gray-700">
+        {{ page.extract }}
+      </blockquote>
+    {% endif %}
+    {% if page.comment %}
+      <div class="mt-6">
+        <h2 class="text-xl font-bold">Neil's Comment</h2>
+        <p>{{ page.comment }}</p>
+      </div>
+    {% endif %}
+  </div>
+</article>
