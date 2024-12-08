@@ -19,8 +19,8 @@ layout: default
   <footer class="mt-12">
     <h2 class="text-2xl font-bold">Related Chapters</h2>
     <ul class="list-disc list-inside mt-4">
-      {% assign current_event_slug = page.title | slugify %}
-      {% assign related_chapters = site.chapters | where_exp: "chapter", "chapter.bibliography contains current_event_slug" %}
+      {% assign current_event = page.title %}
+      {% assign related_chapters = site.chapters | where_exp: "chapter", "chapter.bibliography contains current_event" %}
       {% if related_chapters.size > 0 %}
       {% for chapter in related_chapters %}
       <li>
