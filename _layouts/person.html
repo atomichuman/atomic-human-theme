@@ -4,14 +4,7 @@ layout: default
 <article class="prose max-w-4xl mx-auto p-6">
   <header>
     <h1 class="text-4xl font-serif text-dark-text">
-      {% if page.preferred %}
-        {{ page.preferred }}
-      {% else %}
-        {% if page.title %}{{ page.title }} {% endif %}
-        {% if page.given %}{{ page.given }} {% endif %}
-        {% if page.prefix %}{{ page.prefix }} {% endif %}
-        {% if page.family %}{{ page.family }}{% endif %}
-        {% if page.suffix %}, {{ page.suffix }}{% endif %}
+        {{ page.title }}
       {% endif %}
     </h1>
     <p class="text-gray-600 mt-2">
@@ -20,7 +13,10 @@ layout: default
       {% endif %}
       {% if page.description %}
         <strong>Description:</strong> {{ page.description }}
-      {% endif %}
+	{% endif %}
+	{% if page.period %}
+	<strong>Period:</strong> {{ page.period }}
+	{% endif %}
     </p>
   </header>
 
