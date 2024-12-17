@@ -11,7 +11,7 @@ layout: default
     </p>
     <p class="text-gray-600 mt-2">
       <strong>Venue:</strong> {%if page.room %}<i>{{ page.room }}</i>{% endif %}, {{page.venue}}
-      <strong>Date:</strong> {{page.date | }}
+      <strong>Date:</strong> {{page.date | date: "%B %d, %Y" }}
     </p>
   </header>
 
