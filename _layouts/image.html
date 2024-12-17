@@ -16,47 +16,17 @@ layout: default
 
   <div class="mt-8">
     <image src="{{ page.featured_image }}" alt="{{ page.title }}" class="w-full rounded-lg shadow-lg mb-6">
-    {{ content }}
-    {% if page.toggle_machine_commentary %}
-    <!-- Commentary toggle button -->
-    <div class="flex items-center gap-4 mb-4 mt-8">
-      <button id="toggleCommentary" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
-	Show Commentary
-      </button>
-      <p id="commentaryPrompt" class="text-sm text-gray-500 italic">
-	Click to see what the machine says about the image and the book
-      </p>
-    </div>
 
-  
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-	  const button = document.getElementById('toggleCommentary');
-	  const prompt = document.getElementById('commentaryPrompt');
-	  const commentary = document.querySelector('.machine-commentary');
-	  
-	  // Initially hide the commentary
-	  commentary.style.display = 'none';
+    {{ content }}
       
-	  button.addEventListener('click', () => {
-              const isHidden = commentary.style.display === 'none';
-              commentary.style.display = isHidden ? 'block' : 'none';
-              button.textContent = isHidden ? 'Hide Commentary' : 'Show Commentary';
-              button.className = isHidden ? 
-		  'px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors' :
-		  'px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors';
-              prompt.style.display = isHidden ? 'none' : 'block';
-	  });
-      });
-    </script>
-    {% endif %}
+    {% include toggle_machine_commentary %}
 
   </div>
   <footer class="mt-12">
     <h2 class="text-2xl font-bold">Related Chapters</h2>
     <ul class="list-disc list-inside mt-4">
       {% assign current_event = page.title %}
-      {% assign related_chapters = site.chapters | where_exp: "chapter", "chapter.themes contains current_event" %}
+      {% assign related_chapters = site.chapters | where_exp: "chapter", "chapter.images contains current_event" %}
       {% if related_chapters.size > 0 %}
       {% for chapter in related_chapters %}
       <li>
