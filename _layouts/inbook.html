@@ -16,15 +16,20 @@ layout: default
       <strong>DOI:</strong> <a href="{{ page.doi }}" class="text-pastel-pink hover:underline">{{ page.doi }}</a>
     </p>
   </header>
-
   <div class="mt-8">
-    {{ content }}
-  </div>
 
-  <footer class="mt-12">
     <h2 class="text-2xl font-bold">Abstract</h2>
     <p class="mt-4 text-gray-800">{{ page.abstract }}</p>
+    
+    {{ content }}
 
+    {% include toggle_machine_commentary.html %}    
+  </div>
+
+
+  <footer class="mt-12">
+
+    
     <h2 class="text-2xl font-bold mt-8">Related Chapters</h2>
     <ul class="list-disc list-inside mt-4">
       {% assign current_event = page.title %}

@@ -16,13 +16,16 @@ layout: default
   </header>
 
   <div class="mt-8">
+
+    <h2 class="text-2xl font-bold">Abstract</h2>
+    <p class="mt-4 text-gray-800">{{ page.abstract }}</p>
+    
     {{ content }}
+
+    {% include toggle_machine_commentary.html %}    
   </div>
 
   <footer class="mt-12">
-    <h2 class="text-2xl font-bold">Abstract</h2>
-    <p class="mt-4 text-gray-800">{{ page.abstract }}</p>
-
     <h2 class="text-2xl font-bold mt-8">Related Chapters</h2>
     <ul class="list-disc list-inside mt-4">
       {% assign current_article = page.title %}
