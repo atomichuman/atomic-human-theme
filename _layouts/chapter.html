@@ -82,6 +82,19 @@ layout: default
         {% endfor %}
       </li>
     {% endif %}
+    {% if page.images %}
+      <li>
+        <strong>Images:</strong>
+        {% for image in page.images %}
+          {% assign image_page = site.images | where: "title", image | first %}
+          {% if person_page %}
+            <a href="{{ image_page.url | relative_url }}" class="text-pastel-blue hover:underline">{{ image }}</a>
+          {% else %}
+            <span class="text-gray-500">{{ image }} (not found)</span>
+          {% endif %}
+        {% endfor %}
+      </li>
+    {% endif %}
     {% if page.bibliography %}
       <li>
         <strong>Bibliography:</strong>
