@@ -82,6 +82,19 @@ layout: default
         {% endfor %}
       </li>
     {% endif %}
+    {% if page.bibliography %}
+      <li>
+        <strong>Bibliography:</strong>
+        {% for cite in page.bibliography %}
+          {% assign bibliography_page = site.bibliography | where: "title", cite | first %}
+          {% if bibliography_page %}
+            <a href="{{ bibliography_page.url | relative_url }}" class="text-pastel-blue hover:underline">{{ person }}</a>
+          {% else %}
+            <span class="text-gray-500">{{ cite }} (not found)</span>
+          {% endif %}
+        {% endfor %}
+      </li>
+    {% endif %}
   </ul>
 </footer>
 </article>
