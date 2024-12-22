@@ -1,0 +1,13 @@
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  {% if page.featured_image %}
+  <!-- include page.featured_image (if it exists) as social media card. -->
+  <meta property="og:image" content="{{ page.featured_image | absolute_url }}">
+  {% endif %}
+  {% seo %}
+  <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+  {%- feed_meta -%}
+
+</head>
