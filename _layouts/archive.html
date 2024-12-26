@@ -14,10 +14,14 @@ layout: default
     </p>
   </header>
 
-  <div class="mt-8">
+<div class="mt-8">
+
+    {{ page.description }}
+
+    {% include toggle_machine_commentary.html %}
+
     {{ content }}
     
-    {% include toggle_machine_commentary.html %}
   </div>
 
   <footer class="mt-12">
