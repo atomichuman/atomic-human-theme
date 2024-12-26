@@ -15,12 +15,14 @@ layout: default
   </header>
 
 <div class="mt-8">
+    {% if page.description %}
+    {{ page.description | markdownify }}
+    {% endif %}
 
-    {{ page.description }}
+    {{ content }}
 
     {% include toggle_machine_commentary.html %}
 
-    {{ content }}
     
   </div>
 
