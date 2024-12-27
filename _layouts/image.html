@@ -30,7 +30,7 @@ layout: default
       {% if related_chapters.size > 0 %}
       {% for chapter in related_chapters %}
       <li>
-        <a href="/chapters/{{ chapter.path | split: '/' | last | remove: '.md' }}/" class="text-pastel-pink hover:underline">{{ chapter.title }}</a>
+        <a href="{{ chapter.url }}" class="text-pastel-pink hover:underline">{{ chapter.title }}</a>
       </li>
       {% endfor %}
       {% else %}
