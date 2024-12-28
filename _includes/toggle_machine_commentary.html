@@ -21,7 +21,6 @@
     {% endif %}
   </p>
 </div>
-
   
 <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -37,9 +36,14 @@
           commentary.style.display = isHidden ? 'block' : 'none';
           button.textContent = isHidden ? 'Hide Commentary' : 'Show Commentary';
           button.className = isHidden ? 
-	      'px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors' :
-	      'px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors';
+              'px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors' :
+              'px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors';
           prompt.style.display = isHidden ? 'none' : 'block';
+          
+          // Scroll to commentary when shown
+          if (isHidden) {
+              commentary.scrollIntoView({ behavior: 'smooth' });
+          }
       });
   });
 </script>
