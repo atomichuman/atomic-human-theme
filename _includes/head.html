@@ -9,5 +9,9 @@
   {% seo %}
   <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
   {%- feed_meta -%}
-
+  {% if page.include_js %}
+    {% for js in page.include_js %}
+  <script src="{{ js | relative_url }}"></script>
+    {% endfor %}
+  {% endif %}
 </head>
