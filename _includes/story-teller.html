@@ -40,7 +40,7 @@
 }
 </style>
 
-<div id="story-container" class="image-container">
+<div id="{{ include.map_id }}-story-container" class="image-container">
   <img id="{{ include.map_id }}-map" src="{{ map_config.image.path }}" usemap="#{{ include.map_id }}-image-map">
   
   <map name="{{ include.map_id }}-image-map">
@@ -55,8 +55,8 @@
     {% endfor %}
   </map>
 
-  <div id="text-container"></div>
-  <div id="control-container"></div>
+  <div id="{{ include.map_id }}-text-container"></div>
+  <div id="{{ include.map_id }}-control-container"></div>
 </div>
 
 <script>
@@ -72,9 +72,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }{% unless forloop.last %},{% endunless %}{% endfor %}
 ];
   const storyteller = new ImageStoryteller({
-    storyContainerId: 'story-container',
-    textContainerId: 'text-container',
-    controlContainerId: 'control-container',
+    storyContainerId: '{{ include.map_id }}-story-container',
+    textContainerId: '{{ include.map_id }}-text-container',
+    controlContainerId: '{{ include.map_id }}-control-container',
     imageId: '{{ include.map_id }}-map',
     sections: storyData,
     transitionDuration: 1000,
