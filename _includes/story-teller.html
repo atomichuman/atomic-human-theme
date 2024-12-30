@@ -59,6 +59,11 @@
   <div id="control-container"></div>
 </div>
 
+  {% for section in map_config.story_sections %}
+  {% assign processed_content = section.content | markdownify %}
+  {{ processed_conent }}
+  {% endfor %}
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   {% for section in map_config.story_sections %}
