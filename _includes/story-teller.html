@@ -1,0 +1,89 @@
+{% assign map_config = site.image_maps | where: "slug", include.map_id | first %}
+
+<style>
+.image-container {
+  position: relative;
+  max-width: {{ map_config.image.width }}px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+}
+
+#text-container {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 4px;
+}
+
+#control-container {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.control-button {
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  border: none;
+  border-radius: 4px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.control-button:hover {
+  background: #0056b3;
+}
+</style>
+
+<div id="story-container" class="image-container">
+  <img id="{{ include.map_id }}-map" src="{{ map_config.image.path }}" usemap="#{{ include.map_id }}-image-map">
+  
+  <map name="{{ include.map_id }}-image-map">
+    {% for area in map_config.areas %}
+    <area 
+      target="_blank" 
+      alt="{{ area.alt }}" 
+      title="{{ area.title }}" 
+      href="{{ area.href }}" 
+      coords="{{ area.coords }}" 
+      shape="{{ area.shape }}">
+    {% endfor %}
+  </map>
+
+  <div id="text-container"></div>
+  <div id="control-container"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  {% for section in map_config.story_sections %}
+  {% assign processed_content = section.content | markdownify %}
+  //<!-- {{ processed_conent }}-->
+    {% capture section_data %}
+    {
+      id: {{ section.id | jsonify }},
+      viewBox: {{ section.viewBox | jsonify }},
+      content: {{ processed_content | jsonify }},
+      textPosition: {{ section.textPosition | jsonify }},
+      duration: {{ section.duration | jsonify }}
+    }
+    {% endcapture %}
+    {% unless forloop.first %},{% endunless %}{{ section_data }}
+  {% endfor %}
+  
+  const storyteller = new ImageStoryteller({
+    storyContainerId: 'story-container',
+    textContainerId: 'text-container',
+    controlContainerId: 'control-container',
+    imageId: '{{ include.map_id }}-map',
+    sections: storyData,
+    transitionDuration: 1000,
+    originalWidth: {{ map_config.image.width }}
+  });
+});
+</script>

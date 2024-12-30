@@ -1,0 +1,107 @@
+---
+layout: default
+---
+<article class="prose max-w-4xl mx-auto p-6">
+
+  <div class="mt-8">
+
+{% assign map_config = site.image_maps | where: "slug", include.map_id | first %}
+
+<style>
+.image-container {
+  position: relative;
+  max-width: {{ map_config.image.width }}px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+}
+
+#text-container {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 4px;
+}
+
+#control-container {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.control-button {
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  border: none;
+  border-radius: 4px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.control-button:hover {
+  background: #0056b3;
+}
+</style>
+
+<div id="story-container" class="image-container">
+  <img id="{{ include.map_id }}-map" src="{{ map_config.image.path }}" usemap="#{{ include.map_id }}-image-map">
+  
+  <map name="{{ include.map_id }}-image-map">
+    {% for area in map_config.areas %}
+    <area 
+      target="_blank" 
+      alt="{{ area.alt }}" 
+      title="{{ area.title }}" 
+      href="{{ area.href }}" 
+      coords="{{ area.coords }}" 
+      shape="{{ area.shape }}">
+    {% endfor %}
+  </map>
+
+  <div id="text-container"></div>
+  <div id="control-container"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const storyData = {{ map_config.story_sections | jsonify }};
+  
+  const storyteller = new ImageStoryteller({
+    storyContainerId: 'story-container',
+    textContainerId: 'text-container',
+    controlContainerId: 'control-container',
+    imageId: '{{ include.map_id }}-map',
+    sections: storyData,
+    transitionDuration: 1000,
+    originalWidth: {{ map_config.image.width }}
+  });
+});
+</script>
+
+    {{ content }}
+      
+    {% include toggle_machine_commentary.html %}
+
+  </div>
+  <footer class="mt-12">
+    <h2 class="text-2xl font-bold">Related Chapters</h2>
+    <ul class="list-disc list-inside mt-4">
+      {% assign current_event = page.title %}
+      {% assign related_chapters = site.chapters | where_exp: "chapter", "chapter.iamge_maps contains current_event" %}
+      {% if related_chapters.size > 0 %}
+      {% for chapter in related_chapters %}
+      <li>
+        <a href="{{ chapter.url }}" class="text-pastel-pink hover:underline">{{ chapter.title }}</a>
+      </li>
+      {% endfor %}
+      {% else %}
+      <li>No related chapters found.</li>
+      {% endif %}
+    </ul>
+  </footer>
+  
+</article>
