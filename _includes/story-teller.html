@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
     controlContainerId: '{{ include.map_id }}-control-container',
     imageId: '{{ include.map_id }}-map',
     sections: storyData,
-    transitionDuration: 1000,
+    transitionDuration: {{ map_config.transiation_duration }},
     originalWidth: {{ map_config.image.width }}
   });
 });
