@@ -7,15 +7,20 @@
   
   <main class="flex-grow flex flex-col">
     <!-- Title section -->
-    <div class="px-4 py-2 border-b">
+    <div class="w-full px-4 py-2 border-b">
       <h1 class="text-xl font-bold">{{ page.title }}</h1>
     </div>
 
-    <!-- Main content area - takes up all available space -->
+    <!-- Documentation content -->
+    <div class="w-full px-4 py-4">
+      {{ content }}
+    </div>
+
+    <!-- Image workspace - takes up remaining space -->
     <div class="flex-grow flex">
-      <!-- Image workspace - uses all available width -->
+      <!-- Image area - uses all available width -->
       <div class="flex-grow overflow-auto p-4">
-        {{ content }}
+        <div id="content"></div>
       </div>
 
       <!-- Controls sidebar - fixed width -->
